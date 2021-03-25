@@ -1,0 +1,8 @@
+.dark-mode {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+.white-link {
+  fill: white !important;
+  color: white !important;
+}

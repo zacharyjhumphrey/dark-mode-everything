@@ -1,0 +1,16 @@
+html {
+  font-family: "Arial", sans-serif;
+  font-size: 3em;
+  /* color: blue !important; */
+  background-color: white;
+}
+
+.white-background {
+  background-color: #dfdfdf;
+  color: #333;
+}
+
+.black-background {
+  background-color: #333;
+  color: white;
+}
