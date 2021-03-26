@@ -9,6 +9,22 @@ module.exports = {
     type: 'filesystem',
     cacheDirectory: path.resolve(__dirname, '.temp_cache'),
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ]
+      }
+    ],
+  },
   output: {
     filename: 'darkmode.js',
     path: path.resolve(__dirname, 'build/content'),
