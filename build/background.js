@@ -1,8 +1,16 @@
-let darkMode = false;
+let darkMode = false;  
 
+// FETCH THE VALUE OF DARK MODE AND UPDATE THE POPUP ICON
+chrome.storage.local.get(['dmeEnabled'], function({ dmeEnabled }) {
+    if (dmeEnabled != undefined) {
+        darkMode = dmeEnabled; 
+        chrome.browserAction.setIcon({ path: `images/${dmeEnabled ? "on" : "off"}_icon.svg` });
+    }
+});
+  
 // WHEN THE USER REQUESTS A NEW PAGE
 chrome.runtime.onConnect.addListener(function(port) {
-    console.log("Connected to popup");
+    console.log("BACKGROUND CONNECTED TO PORT");
 
     // SEND THE CURRENT VALUE OF DARK MODE TO THE CONNECTION (POPUP OR CONTENT)
     port.postMessage({ event: "darkmode-status", data: darkMode });
@@ -11,53 +19,23 @@ chrome.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(msg) {
         if (msg.event == "dark-mode-on") {
             darkMode = true;
+            chrome.storage.local.set({ dmeEnabled: true });
 
             // INSERT CSS
-            insertDarkMode();
+            chrome.browserAction.setIcon({ path: "images/on_icon.svg" });
 
             // FIRE JS
             messageTabs(msg);
         } else if (msg.event == "dark-mode-off") {
             darkMode = false;
+            chrome.storage.local.set({ dmeEnabled: false });
 
-            // REMOVE CSS
-            removeDarkMode();
-
+            chrome.browserAction.setIcon({ path: "images/off_icon.svg" });
             // REVERT JS
             messageTabs(msg);
         }
     });
 });
-
-// WHEN THE USER NAVIGATES TO A NEW PAGE
-chrome.webNavigation.onCommitted.addListener(details => {
-    // IF DARK MODE WAS TURNED ON IN THE POPUP
-    if (darkMode) {
-        // INSERT CSS INTO THE FILE
-        // chrome.tabs.insertCSS(details.tabId, { file: '/content/content.css' });
-    }
-});
-
-// LISTEN FOR MESSAGES FROM THE CONTENT SCRIPT
-// chrome.tabs.onMessage(function() {})
-
-// GIVE DARK MODE ALL EXISTING TABS
-function insertDarkMode() {
-    chrome.tabs.query({ currentWindow: true }, function(tabs) {
-        for (var i=0; i<tabs.length; ++i) {
-            // chrome.tabs.insertCSS(tabs[i].id, { file: '/content/content.css' });
-        }
-    });
-}
-
-// REMOVE DARK MODE FROM ALL EXISTING TABS
-function removeDarkMode() {
-    chrome.tabs.query({ currentWindow: true }, function(tabs) {
-        for (var i=0; i<tabs.length; ++i) {
-            // chrome.tabs.removeCSS(tabs[i].id, { file: '/content/content.css' });
-        }
-    });
-}
 
 // SEND MESSAGE TO EACH CONTENT SCRIPT
 function messageTabs(msg) {

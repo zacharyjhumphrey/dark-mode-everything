@@ -34,4 +34,6 @@ function setCheckbox(value) {
     } else {
         document.getElementsByTagName('html')[0].classList.remove('dark-mode-on');
     }
+
+    document.getElementsByTagName('html')[0].classList.add('animate-dark-mode');
 }

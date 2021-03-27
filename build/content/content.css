@@ -32,3 +32,8 @@ a:hover {
   color: #1a73e8 !important;
   fill: #1a73e8 !important;
 }
+
+*::before,
+*::after {
+  filter: invert(1) hue-rotate(180deg);
+}

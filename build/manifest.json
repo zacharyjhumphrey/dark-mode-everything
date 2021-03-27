@@ -1,6 +1,6 @@
 {
     "name": "Dark Mode Everything",
-    "description": "Dark mode for every website!",
+    "description": "Dark mode for every website",
     "version": "1.0",
     "manifest_version": 2,
     "content_scripts": [ 
@@ -10,8 +10,15 @@
             "run_at": "document_start"
         } 
     ],
+    "icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
     "browser_action": {
-        "default_popup": "popup/index.html"
+        "default_title": "Dark Mode Everything",
+        "default_popup": "popup/index.html",
+        "default_icon": "images/off_icon32.png"
     },
     "background": {
         "scripts": ["background.js"],
@@ -22,9 +29,6 @@
     ],
     "permissions": [
         "tabs",
-        "webNavigation",
-        "declarativeContent",
-        "http://*/",
-        "https://*/"
+        "storage"
     ]   
 }

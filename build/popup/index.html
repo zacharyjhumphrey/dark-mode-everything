@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,700&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1 id="logo">DARK MODE</h1>
-    <label class="switch">
-        <input type="checkbox" id="toggle-dark-mode">
-        <span class="slider round"></span>
+    <label class="toggle-dark-mode-h" for="toggle-dark-mode">
+        <input name="toggle-dark-mode" type="checkbox" id="toggle-dark-mode" hidden="true">
+        <div class="dm-button-bg">
+            <svg class="dm-button" width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30.3247 24.7695C29.0264 26.7928 27.2164 28.4371 25.078 29.5357C22.9396 30.6343 20.5488 31.1482 18.1479 31.0253C15.747 30.9024 13.4212 30.1471 11.4061 28.8359C9.39112 27.5247 7.75846 25.7041 6.67357 23.5588C5.58869 21.4134 5.09013 19.0194 5.2284 16.6193C5.36667 14.2192 6.13686 11.8983 7.46094 9.89169C8.78502 7.8851 10.6159 6.26413 12.7682 5.193C14.9205 4.12187 17.3176 3.63865 19.7168 3.79228C19.7168 3.79228 13.5184 9.75171 17.804 18.2265C22.0896 26.7013 30.3247 24.7695 30.3247 24.7695Z"/>
+            </svg>
+        </div>
     </label>
 </body>
 <script src="./popup.js"></script>
