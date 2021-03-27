@@ -11,9 +11,9 @@
         } 
     ],
     "icons": {
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
+        "16": "images/on_icon16.png",
+        "48": "images/on_icon48.png",
+        "128": "images/on_icon128.png"
     },
     "browser_action": {
         "default_title": "Dark Mode Everything",
